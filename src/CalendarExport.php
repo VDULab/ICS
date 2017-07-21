@@ -139,17 +139,17 @@ class CalendarExport
             foreach ($cal->getEvents() as $event)
             {
                 $dtStart = $event->isAllDay() ?
-                    $this->formatter->getFormattedDate($event->getStart()) : 
-                    $this->formatter->getFormattedDateTime($event->getStart());
+                    ';VALUE=DATE:' . $this->formatter->getFormattedDate($event->getStart()) : 
+                    ':' . $this->formatter->getFormattedDateTime($event->getStart());
 
                 $dtEnd   = $event->isAllDay() ?
-                    $this->formatter->getFormattedDate($event->getEnd()) :
-                    $this->formatter->getFormattedDateTime($event->getEnd());
+                    ';VALUE=DATE:' . $this->formatter->getFormattedDate($event->getEnd()) :
+                    ':' . $this->formatter->getFormattedDateTime($event->getEnd());
 
                 $this->stream->addItem('BEGIN:VEVENT')
                     ->addItem('UID:'.$event->getUid())
-                    ->addItem('DTSTART:'. $dtStart)
-                    ->addItem('DTEND:'. $dtEnd);
+                    ->addItem('DTSTART'. $dtStart)
+                    ->addItem('DTEND'. $dtEnd);
                 
                     if ($event->getRecurrenceRule() instanceof RecurrenceRule)
                         $this->stream->addItem($event->getRecurrenceRule()->__toString());
