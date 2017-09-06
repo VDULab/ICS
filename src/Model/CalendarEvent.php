@@ -114,6 +114,12 @@ class CalendarEvent
      * @var \DateTime $recurringId
      */
     private $recurringId;
+
+    /**
+     *
+     * @var boolean
+     */
+    private $recurrenceElement = TRUE;
     
     /**
      * 
@@ -550,6 +556,26 @@ class CalendarEvent
     {
         $this->recurringId = $recurringId;
         return $this;
+    }
+
+    /**
+     *
+     * @param boolean $singleInstance
+     * @return \Jsvrcek\ICS\Model\CalendarEvent
+     */
+    public function setRecurrenceElement($singleInstance)
+    {
+        $this->recurrenceElement = $singleInstance;
+        return $this;
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function getRecurrenceElement()
+    {
+        return $this->recurrenceElement;
     }
     
     /**
