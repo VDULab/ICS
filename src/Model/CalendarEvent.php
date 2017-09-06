@@ -111,7 +111,7 @@ class CalendarEvent
 
     /**
      * @todo add support in CalendarExport
-     * @var string $recurringId
+     * @var \DateTime $recurringId
      */
     private $recurringId;
     
@@ -534,7 +534,7 @@ class CalendarEvent
 
     /**
      * 
-     * @return string
+     * @return \DateTime
      */
     public function getRecurringId()
     {
@@ -543,10 +543,10 @@ class CalendarEvent
 
     /**
      * 
-     * @param string $recuringId
+     * @param \DateTime $recurringId
      * @return \Jsvrcek\ICS\Model\CalendarEvent
      */
-    public function setRecurringId($recurringId)
+    public function setRecurringId(\DateTime $recurringId)
     {
         $this->recurringId = $recurringId;
         return $this;
