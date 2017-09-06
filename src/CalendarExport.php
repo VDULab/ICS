@@ -158,7 +158,12 @@ class CalendarExport
                     {
                         $this->stream->addItem('EXDATE:'.$this->formatter->getFormattedDateTime($date));
                     }
-                    
+
+                    if ($event->getRecurringId() instanceof \DateTime) {
+                        $itemLabel = $event->getRecurrenceElement() ? 'RECURRENCE-ID:' : 'RECURRENCE-ID;THISANDFUTURE:';
+                        $this->stream->addItem($itemLabel.$this->formatter->getFormattedDateTime($event->getRecurringId()));
+                    }
+
                     if ($event->getSequence())
                         $this->stream->addItem('SEQUENCE:'.$event->getSequence());
                     

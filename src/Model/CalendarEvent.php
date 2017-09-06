@@ -111,9 +111,15 @@ class CalendarEvent
 
     /**
      * @todo add support in CalendarExport
-     * @var string $recuringId
+     * @var \DateTime $recurringId
      */
-    private $recuringId;
+    private $recurringId;
+
+    /**
+     *
+     * @var boolean
+     */
+    private $recurrenceElement = TRUE;
     
     /**
      * 
@@ -534,22 +540,42 @@ class CalendarEvent
 
     /**
      * 
-     * @return string
+     * @return \DateTime
      */
-    public function getRecuringId()
+    public function getRecurringId()
     {
-        return $this->recuringId;
+        return $this->recurringId;
     }
 
     /**
      * 
-     * @param string $recuringId
+     * @param \DateTime $recurringId
      * @return \Jsvrcek\ICS\Model\CalendarEvent
      */
-    public function setRecuringId($recuringId)
+    public function setRecurringId(\DateTime $recurringId)
     {
-        $this->recuringId = $recuringId;
+        $this->recurringId = $recurringId;
         return $this;
+    }
+
+    /**
+     *
+     * @param boolean $singleInstance
+     * @return \Jsvrcek\ICS\Model\CalendarEvent
+     */
+    public function setRecurrenceElement($singleInstance)
+    {
+        $this->recurrenceElement = $singleInstance;
+        return $this;
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function getRecurrenceElement()
+    {
+        return $this->recurrenceElement;
     }
     
     /**
