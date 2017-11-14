@@ -259,7 +259,7 @@ class CalendarExport
                         $this->stream->addItem('END:VALARM');
                     }
 
-                foreach ($event->attachments as $attachment) {
+                foreach ($event->getAttachments() as $attachment) {
                     $this->stream->addItem($attachment->getString());
                 }
                 
