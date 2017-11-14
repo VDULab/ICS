@@ -140,6 +140,12 @@ class CalendarEvent
     private $alarms = array();
 
     /**
+     * 
+     * @var array $attachments
+     */
+    private $attachments = array();
+
+    /**
      * @var string $url
      */
     private $url;
@@ -344,6 +350,34 @@ class CalendarEvent
     public function setAlarms(array $alarms)
     {
         $this->alarms = $alarms;
+        return $this;
+    }
+
+    /**
+     * @return array $attachments returs array of CalendarAttach objects
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+    
+    /**
+     * @param CalendarAttach $attach
+     * @return \Jsvrcek\ICS\Model\CalendarEvent
+     */
+    public function addAttachment(CalendarAttach $attachment)
+    {
+        $this->attachments[] = $attachment;
+        return $this;
+    }
+    
+    /**
+     * @param array $attachments
+     * @return \Jsvrcek\ICS\Model\CalendarEvent
+     */
+    public function setAttachments(array $attachments)
+    {
+        $this->attachments = $attachments;
         return $this;
     }
 
