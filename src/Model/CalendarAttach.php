@@ -42,7 +42,7 @@ class CalendarAttach {
       $output .= ';ENCODING=BASE64;VALUE=BINARY';
       $output .= ':' . base64_encode($this->content);
     }
-
+    return $output;
   }
 
   protected function buildContent() {
