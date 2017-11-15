@@ -39,7 +39,7 @@ class CalendarAttach {
       $output .= ';FMTTYPE=' . $this->mimetype;
     }
     if ($this->content) {
-      $output .= ';ENCODING=BASE64;VALUE=BINARY';
+      $output .= ';ENCODING=BASE64;VALUE=BINARY;X-FILENAME=' . $this->name;
       $output .= ':' . base64_encode($this->content);
     }
     return $output;
