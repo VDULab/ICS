@@ -113,12 +113,15 @@ class CalendarExport
                 
                 $this->stream->addItem('BEGIN:STANDARD')
                     ->addItem('DTSTART:16010101T030000')
-                    ->addItem('TZOFFSETTO:'.$standard['offsetTo'])
-                    ->addItem('TZOFFSETFROM:'.$standard['offsetFrom']);
+                    ->addItem('TZOFFSETTO:'.$standard['offsetTo']);
                     
                     if ($daylightSavings['exists'])
                     {
-                        $this->stream->addItem('RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=10');
+                        $this->stream->addItem('TZOFFSETFROM:'.$daylightSavings['offsetTo'])
+                            ->addItem('RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=10');
+                    }
+                    else {
+                        $this->stream->addItem('TZOFFSETFROM:'.$standard['offsetFrom']);
                     }
                 $this->stream->addItem('END:STANDARD');
                 
