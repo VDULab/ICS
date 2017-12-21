@@ -76,7 +76,7 @@ class CalendarExport
             $this->stream->addItem('BEGIN:VTIMEZONE');
             
                 $tz = $cal->getTimezone();
-                $transitions = $tz->getTransitions(strtotime('2018-01-01'), strtotime('2018-12-31'));
+                $transitions = $tz->getTransitions(strtotime('1970-01-01'), strtotime('1970-12-31'));
                 
                 $daylightSavings = array(
                         'exists' => false,
@@ -112,23 +112,23 @@ class CalendarExport
                 $this->stream->addItem('TZID:'.$tz->getName());
                 
                 $this->stream->addItem('BEGIN:STANDARD')
-                    ->addItem('DTSTART:'.$standard['start'])
+                    ->addItem('DTSTART:16010101T030000')
                     ->addItem('TZOFFSETTO:'.$standard['offsetTo'])
                     ->addItem('TZOFFSETFROM:'.$standard['offsetFrom']);
                     
                     if ($daylightSavings['exists'])
                     {
-                        $this->stream->addItem('RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU');
+                        $this->stream->addItem('RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=10');
                     }
                 $this->stream->addItem('END:STANDARD');
                 
                 if ($daylightSavings['exists'])
                 {
                     $this->stream->addItem('BEGIN:DAYLIGHT')
-                        ->addItem('DTSTART:'.$daylightSavings['start'])
+                        ->addItem('DTSTART:16010101T020000')
                         ->addItem('TZOFFSETTO:'.$daylightSavings['offsetTo'])
                         ->addItem('TZOFFSETFROM:'.$daylightSavings['offsetFrom'])
-                        ->addItem('RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU')
+                        ->addItem('RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=3')
                     ->addItem('END:DAYLIGHT');
                 }
             
